@@ -10,6 +10,7 @@ class RichEditorOptions {
   String? baseFontFamily;
   BarPosition? barPosition;
   bool? enableVideo;
+  bool? enableImage;
 
   RichEditorOptions({
     Color? backgroundColor,
@@ -19,6 +20,7 @@ class RichEditorOptions {
     String? baseFontFamily,
     BarPosition? barPosition,
     bool? enableVideo = true,
+    bool? enableImage = true,
   }) {
     this.backgroundColor = backgroundColor;
     this.baseTextColor = baseTextColor;
@@ -27,5 +29,6 @@ class RichEditorOptions {
     this.baseFontFamily = baseFontFamily;
     this.barPosition = barPosition;
     this.enableVideo = enableVideo;
+    this.enableImage = enableImage;
   }
 }
