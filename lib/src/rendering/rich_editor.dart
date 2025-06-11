@@ -145,6 +145,7 @@ class RichEditorState extends State<RichEditor> {
       getVideoUrl: widget.getVideoUrl,
       javascriptExecutor: javascriptExecutor,
       enableVideo: widget.editorOptions!.enableVideo,
+      enableImage: widget.editorOptions!.enableImage,
     );
   }
 
