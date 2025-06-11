@@ -18,12 +18,14 @@ class EditorToolBar extends StatelessWidget {
   final Function(File video)? getVideoUrl;
   final JavascriptExecutorBase javascriptExecutor;
   final bool? enableVideo;
+  final bool? enableImage;
 
   EditorToolBar({
     this.getImageUrl,
     this.getVideoUrl,
     required this.javascriptExecutor,
     this.enableVideo,
+    this.enableImage,
   });
 
   @override
@@ -66,26 +68,29 @@ class EditorToolBar extends StatelessWidget {
                       await javascriptExecutor.insertLink(link[0], link[1]);
                   },
                 ),
-                TabButton(
-                  tooltip: 'Insert Image',
-                  icon: Icons.image,
-                  onTap: () async {
-                    var link = await showDialog(
-                      context: context,
-                      builder: (_) {
-                        return InsertImageDialog();
-                      },
-                    );
-                    if (link != null) {
-                      if (getImageUrl != null && link[2]) {
-                        link[0] = await getImageUrl!(File(link[0]));
-                      }
-                      await javascriptExecutor.insertImage(
-                        link[0],
-                        alt: link[1],
+                Visibility(
+                  visible: enableImage! ,
+                  child: TabButton(
+                    tooltip: 'Insert Image',
+                    icon: Icons.image,
+                    onTap: () async {
+                      var link = await showDialog(
+                        context: context,
+                        builder: (_) {
+                          return InsertImageDialog();
+                        },
                       );
-                    }
-                  },
+                      if (link != null) {
+                        if (getImageUrl != null && link[2]) {
+                          link[0] = await getImageUrl!(File(link[0]));
+                        }
+                        await javascriptExecutor.insertImage(
+                          link[0],
+                          alt: link[1],
+                        );
+                      }
+                    },
+                  ),
                 ),
                 Visibility(
                   visible: enableVideo!,
