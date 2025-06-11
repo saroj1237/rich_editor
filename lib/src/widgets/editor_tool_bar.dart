@@ -69,7 +69,7 @@ class EditorToolBar extends StatelessWidget {
                   },
                 ),
                 Visibility(
-                  visible: enableImage! ,
+                  visible: enableImage??true ,
                   child: TabButton(
                     tooltip: 'Insert Image',
                     icon: Icons.image,
